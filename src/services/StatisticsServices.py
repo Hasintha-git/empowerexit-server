@@ -538,7 +538,6 @@ def get_department_insights():
         lowest_department_count=100
         lowest_department_name=""
         for department in departments:
-            print(department.name)
             employees=Employee.query.filter_by(fk_department_id=department.id).all()
 
             employee_A_total=0
