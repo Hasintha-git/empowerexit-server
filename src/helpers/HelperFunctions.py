@@ -16,7 +16,7 @@ def get_current_month_start_date():
 def get_current_month_end_date():
         current_month = date.today().month
         current_year = date.today().year
-        return str(current_year)+"-"+str(current_month)+"-31"
+        return str(current_year)+"-"+str(current_month)+"-28"
 
 def get_tuned_count(pred_amount):
 
