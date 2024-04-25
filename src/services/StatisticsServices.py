@@ -232,7 +232,7 @@ def get_employee_trunover_last_predictions():
             generated_year =str(get_year_from_the_date(past_date))
             generated_month = str(get_month_from_the_date(past_date))
             start_date = generated_year+"-"+generated_month+"-01"
-            end_date = generated_year+"-"+generated_month+"-31"
+            end_date = generated_year+"-"+generated_month+"-28"
 
             # retriving the true predictions fro the date range and appending them to the map
             true_predictions_count = len(db.session.query(Prediction).filter(Prediction.is_leaving==True).filter(Prediction.updated_timestamp>= start_date).filter(Prediction.updated_timestamp <= end_date).all())
