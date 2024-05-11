@@ -357,8 +357,9 @@ def employee_survey():
 
             # deducting predicted total months from worked months from joined date to get rest days
             emp_worked_days = date.today()-date(employee_record.joined_date.year,employee_record.joined_date.month,employee_record.joined_date.day) # worked days from date of joined
-            emp_worked_days_in_months = (emp_worked_days.days// 30) +1
+            # emp_worked_days_in_months = (emp_worked_days.days// 30) +1
             emp_worked_days_in_months=get_tuned_count(round(employee_turnover_result.score*100))
+            print("kkk",employee_turnover_days_in_months,emp_worked_days_in_months)
             employee_turnover_days_in_months = employee_turnover_days_in_months-emp_worked_days_in_months 
 
             if employee_turnover_days_in_months<=0:
@@ -397,13 +398,16 @@ def employee_survey():
         # updating employee table columns(is leaving,pred,days) by the latest records
         employee_record.is_leaving = employee_turnover_result.is_leaving
         employee_record.latest_turnover_rate=employee_turnover_result.score
+        print("Buuuu1",employee_turnover_days_in_months)
         if employee_turnover_result.is_leaving:
-                employee_record.latest_months_to_leave = employee_turnover_days_in_months
+                #employee_record.latest_months_to_leave = employee_turnover_days_in_months
+                employee_record.latest_months_to_leave = emp_worked_days_in_months
         else:
             employee_record.latest_months_to_leave =0
         employee_record.updated_timestamp = datetime.datetime.now()
         
         db.session.add(employee_record)
+        print("Buuuu",employee_record.latest_months_to_leave)
         db.session.commit()
         
 

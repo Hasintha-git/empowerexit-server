@@ -824,9 +824,9 @@ def predict_employee_turnover_days(employee_survey_regression_data):
     logging.info('EmployeeServices - predict_employee_turnover_days() datapoint initiated')
     
     #model/sclaers importing
-    xgbr_model = pickle.load(open("prediction_model/turnover_days_model_updated/employee_turnover_days_xgb_regression_updated_model.pkl", 'rb'))
-    mx_input_scaler = pickle.load(open("prediction_model/turnover_days_model_updated/employee_turnover_days_features_min_max_feature_updated_scaler.pkl", 'rb'))
-    mx_output_scaler = pickle.load(open("prediction_model/turnover_days_model_updated/employee_turnover_days_features_min_max_output_updated_scaler.pkl", 'rb'))
+    xgbr_model = pickle.load(open("prediction_model/turnover_days_model/employee_turnover_days_xgb_regression_updated_model.pkl", 'rb'))
+    mx_input_scaler = pickle.load(open("prediction_model/turnover_days_model/employee_turnover_days_features_min_max_feature_updated_scaler.pkl", 'rb'))
+    mx_output_scaler = pickle.load(open("prediction_model/turnover_days_model/employee_turnover_days_features_min_max_output_updated_scaler.pkl", 'rb'))
 
     logging.info('EmployeeServices - predict_employee_turnover_days() modesl/scaled impored')
 
