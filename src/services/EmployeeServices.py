@@ -488,7 +488,7 @@ def get_employee_turnover_analytics():
 
         # required fields validating (values exits or not)
         values = request.args
-        if not "id" in values:
+        if "id" not in values:
             response_dto =ResponseDto(status=ERROR,msg='REQUIRED FIELDS ARE MISSING',data=None).toJSON()
             return Response(response=response_dto,status=HTTP_400_BAD_REQUEST,mimetype=RESPONSE_RETURN_TYPE)
 
@@ -498,15 +498,15 @@ def get_employee_turnover_analytics():
             return Response(response=response_dto,status=HTTP_400_BAD_REQUEST,mimetype=RESPONSE_RETURN_TYPE)
 
         # capturing the body data
-        id = values['id']
+        _id = values['id']
 
         # emp id status validating
-        if Employee.query.filter_by(id=id).first() is None:
+        if Employee.query.filter_by(id=_id).first() is None:
                 response_dto =ResponseDto(status=ERROR,msg="EMPLOYEE ID NOT FOUND",data=None).toJSON()
                 return Response(response=response_dto,status=HTTP_422_UNPROCESSABLE_ENTITY,mimetype=RESPONSE_RETURN_TYPE)
 
         # emp latest prediction retrieving
-        emp_latest_prediction = db.session.query(Prediction).filter(Prediction.fk_emp_id == id).order_by(Prediction.updated_timestamp.desc()).first()
+        emp_latest_prediction = db.session.query(Prediction).filter(Prediction.fk_emp_id == _id).order_by(Prediction.updated_timestamp.desc()).first()
         if emp_latest_prediction is not None:
             prediction_factor_mappings = db.session.query(PredictionFactorMapping).filter(PredictionFactorMapping.fk_prediction_id == emp_latest_prediction.id).all()
 
